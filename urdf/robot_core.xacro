@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+      <xacro:include filename="inertial_macros.xacro" />
+      <!-- Base link -->
+
+      <link name="base_link">
+
+      </link>
+
+      <!-- Chassis link -->
+
+      <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="-0.1 0 0"/>
+      </joint>
+
+      <link name="chassis">
+         <visual>
+            <origin xyz="0.15 0 0.075"/>
+            <geometry>
+               <box size="0.3 0.3 0.15"/>
+            </geometry>
+            <material name="chassis_material">
+               <color rgba="0.25 0.25 0.25 1.0"/>
+            </material>
+         </visual>
+         <collision>
+            <origin xyz="0.15 0 0.075"/>
+            <geometry>
+               <box size="0.3 0.3 0.15"/>
+            </geometry>
+         </collision>
+         <xacro:inertial_box mass="0.5" x="0.3" y="0.3" z="0.15">
+            <origin xyz="0.15 0 0.075" rpy="0 0 0"/>
+         </xacro:inertial_box>
+      </link>
+
+      <!-- Left wheel link -->
+      <joint name="left_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_wheel"/>
+        <origin xyz="0 0.175 0" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0 0 1"/>
+      </joint>
+
+      <link name="left_wheel">
+         <visual>
+            <geometry>
+               <cylinder radius="0.05" length="0.04"/>
+            </geometry>
+            <material name="wheel_material">
+               <color rgba="0.0 0.0 0.0 1.0"/>
+            </material>
+         </visual>
+         <collision>
+            <geometry>
+               <cylinder radius="0.05" length="0.04"/>
+            </geometry>
+         </collision>
+         <xacro:inertial_cylinder mass="0.1" length="0.04" radius="0.05">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+         </xacro:inertial_cylinder>
+      </link>
+
+      <!-- Right wheel link -->
+      <joint name="right_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_wheel"/>
+        <origin xyz="0 -0.175 0" rpy="${pi/2} 0 0"/>
+        <axis xyz="0 0 -1"/>
+      </joint>
+
+      <link name="right_wheel">
+         <visual>
+            <geometry>
+               <cylinder radius="0.05" length="0.04"/>
+            </geometry>
+            <material name="wheel_material">
+                <color rgba="0.0 0.0 0.0 1.0"/>
+            </material>
+         </visual>
+         <collision>
+            <geometry>
+               <cylinder radius="0.05" length="0.04"/>
+            </geometry>
+         </collision>
+            <xacro:inertial_cylinder mass="0.1" length="0.04" radius="0.05">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+         </xacro:inertial_cylinder>
+      </link>
+
+      <!-- Castor wheel link -->
+      <joint name="castor_wheel_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="castor_wheel"/>
+        <origin xyz="0.24 0 0"/>
+      </joint>
+
+      <link name="castor_wheel">
+         <visual>
+            <geometry>
+               <sphere radius="0.05"/>
+            </geometry>
+            <material name="castor_material">
+                <color rgba="0.0 0.0 0.0 1.0"/>
+            </material>
+         </visual>
+         <collision>
+            <geometry>
+               <sphere radius="0.05"/>
+            </geometry>
+         </collision>
+         <xacro:inertial_sphere mass="0.1" radius="0.05">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+         </xacro:inertial_sphere>
+      </link>
+
+      <!-- Gazebo Parameters -->
+      <gazebo reference="chassis_link">
+         <mu1>1.0</mu1>
+         <mu2>1.0</mu2>
+      </gazebo>
+
+      <gazebo reference="right_wheel">
+         <mu1>1.0</mu1>
+         <mu2>1.0</mu2>
+      </gazebo>
+
+      <gazebo reference="left_wheel">
+         <mu1>1.0</mu1>
+         <mu2>1.0</mu2>
+      </gazebo>
+
+      <gazebo reference="castor_wheel">
+         <mu1>0.000001</mu1>
+         <mu2>0.000001</mu2>
+      </gazebo>
+
+</robot>
