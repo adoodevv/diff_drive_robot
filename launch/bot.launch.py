@@ -53,7 +53,7 @@ def generate_launch_description():
     robot_model_path = os.path.join(
         get_package_share_directory(robot_pkg_name),
         'urdf',
-        'bot.xacro'
+        'robot.urdf.xacro'
     )
 
     gz_bridge_params_path = os.path.join(
