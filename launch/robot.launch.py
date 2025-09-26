@@ -29,7 +29,7 @@ def generate_launch_description():
         description='Opens rviz is set to True')
 
     # Launch Robot State Publisher Node
-    urdf_path = os.path.join(get_package_share_directory(package_name),'urdf','robot.urdf.xacro')
+    urdf_path = os.path.join(get_package_share_directory(package_name),'urdf','robot.urdf')
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory(package_name),'launch','rsp.launch.py'

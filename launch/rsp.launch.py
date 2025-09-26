@@ -11,10 +11,9 @@ def generate_launch_description():
     package_name = FindPackageShare("diff_drive_robot")
 
     # Default robot description if none is specified
-    urdf_path = PathJoinSubstitution([package_name, "urdf", "robot.urdf.xacro"])
+    urdf_path = PathJoinSubstitution([package_name, "urdf", "robot.urdf"])
     
     # Launch configurations
-    urdf = LaunchConfiguration('urdf')
     use_sim_time = LaunchConfiguration('use_sim_time')
 
     # Declare launch arguments
@@ -30,8 +29,9 @@ def generate_launch_description():
     robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
+        name='robot_state_publisher',
         output='screen',
-        parameters=[{'use_sim_time': use_sim_time,'robot_description': Command(['xacro ', urdf])}]
+        parameters=[{'use_sim_time': use_sim_time,'robot_description': Command(['xacro', ' ', urdf_path]),}],
     )
 
     # Launch!
