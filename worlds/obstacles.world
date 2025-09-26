@@ -8,25 +8,25 @@
     </physics>
 
     <plugin
-        filename="ignition-gazebo-physics-system"
-        name="ignition::gazebo::systems::Physics">
+      filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
     </plugin>
     <plugin
-        filename="ignition-gazebo-user-commands-system"
-        name="ignition::gazebo::systems::UserCommands">
+      filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands">
     </plugin>
     <plugin
-        filename="ignition-gazebo-scene-broadcaster-system"
-        name="ignition::gazebo::systems::SceneBroadcaster">
+      filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
     </plugin>
     <plugin
-        filename="ignition-gazebo-sensors-system"
-        name="ignition::gazebo::systems::Sensors">
-        <render_engine>ogre2</render_engine>
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
     </plugin>
-    <plugin 
-        filename="ignition-gazebo-contact-system"
-        name="ignition::gazebo::systems::Contact">
+    <plugin
+      filename="gz-sim-imu-system"
+      name="gz::sim::systems::Imu">
     </plugin>
     
     <model name='ground_plane'>
