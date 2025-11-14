@@ -3,7 +3,7 @@ from launch_ros.actions import Node
 from launch import LaunchDescription
 from launch.conditions import IfCondition
 from ament_index_python.packages import get_package_share_directory
-from launch.substitutions import LaunchConfiguration, PythonExpression
+from launch.substitutions import LaunchConfiguration
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, GroupAction
 
@@ -17,7 +17,7 @@ def generate_launch_description():
     rviz = LaunchConfiguration('rviz')
 
     # Path to default world 
-    world_path = os.path.join(get_package_share_directory(package_name),'worlds', 'obstacles.world')
+    world_path = os.path.join(get_package_share_directory(package_name),'worlds', 'world.sdf')
 
     # Launch Arguments
     declare_world = DeclareLaunchArgument(
@@ -82,6 +82,17 @@ def generate_launch_description():
                     output='screen',)]
     )
 
+    ekf_node = Node(
+        package='robot_localization',
+        executable='ekf_node',
+        name='ekf_filter_node',
+        output='screen',
+        parameters=[
+            os.path.join(get_package_share_directory(package_name), 'config', 'ekf.yaml'),
+            {'use_sim_time': LaunchConfiguration('use_sim_time')},
+             ]
+    )
+
     # Launch them all!
     return LaunchDescription([
         # Declare launch arguments
@@ -89,10 +100,11 @@ def generate_launch_description():
         declare_world,
 
         # Launch the nodes
-        rviz2,
+        # rviz2,
         rsp,
         gazebo_server,
         gazebo_client,
         ros_gz_bridge,
-        spawn_diff_bot
+        spawn_diff_bot,
+        ekf_node,
     ])

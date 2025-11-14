@@ -14,14 +14,14 @@
         </plugin>
 
         <plugin
-        filename="gz-sim-odometry-publisher-system"
-        name="gz::sim::systems::OdometryPublisher">
-        <odom_frame>odom</odom_frame>
-        <robot_base_frame>base_link</robot_base_frame>
-        <odom_publish_frequency>50</odom_publish_frequency>
-        <odom_topic>/odom</odom_topic>
-        <tf_topic>/tf</tf_topic>
-        <dimensions>2</dimensions>
+            filename="gz-sim-odometry-publisher-system"
+            name="gz::sim::systems::OdometryPublisher">
+            <odom_frame>odom</odom_frame>
+            <robot_base_frame>base_link</robot_base_frame>
+            <odom_publish_frequency>50</odom_publish_frequency>
+            <odom_topic>/odom</odom_topic>
+            <tf_topic>/tf</tf_topic>
+            <dimensions>2</dimensions>
         </plugin>
       
         <plugin filename="gz-sim-joint-state-publisher-system" name="gz::sim::systems::JointStatePublisher">
@@ -61,7 +61,7 @@
                 </scan>
                 <range>
                     <min>0.05</min>
-                    <max>10.0</max>
+                    <max>20.0</max>
                     <resolution>0.01</resolution>
                 </range>
                 <noise>
