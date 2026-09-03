@@ -12,7 +12,8 @@ def generate_launch_description():
     pkg_diff_drive_robot = get_package_share_directory('diff_drive_robot')
 
     gazebo_models_path, ignore_last_dir = os.path.split(pkg_diff_drive_robot)
-    os.environ["GZ_SIM_RESOURCE_PATH"] += os.pathsep + gazebo_models_path
+    existing_path = os.environ.get("GZ_SIM_RESOURCE_PATH", "")
+    os.environ["GZ_SIM_RESOURCE_PATH"] = existing_path + os.pathsep + gazebo_models_path
 
     rviz_launch_arg = DeclareLaunchArgument(
         'rviz', default_value='true',
