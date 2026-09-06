@@ -28,6 +28,11 @@ def generate_launch_description():
         name='rviz', default_value='True',
         description='Opens rviz is set to True')
 
+    declare_use_sim_time = DeclareLaunchArgument(
+        name='use_sim_time',
+        default_value='true',
+        description='Use simulation clock')
+
     # Launch Robot State Publisher Node
     urdf_path = os.path.join(get_package_share_directory(package_name),'urdf','robot.urdf')
     rsp = IncludeLaunchDescription(
@@ -98,6 +103,7 @@ def generate_launch_description():
         # Declare launch arguments
         declare_rviz,
         declare_world,
+        declare_use_sim_time,
 
         # Launch the nodes
         # rviz2,
